@@ -6,7 +6,7 @@ import jwt
 import datetime
 from django.conf import settings
 
-from model.models import User
+from model.models import User, USER_ROLE
 
 
 def hash_password(password):
@@ -74,10 +74,15 @@ def serialize_model_instance(instance, exclude):
     return data
 
 
-def validate_request(data):
-    is_email_existed = User.objects.filter(email = data['email'], deleted = False)
-    is_phone_existed = User.objects.filter(mobile = data['mobile'], deleted = False)
-    is_username_existed = User.objects.filter(username = data['username'], deleted = False)
+def validate_request(data, type):
+    is_email_existed = (User.objects.filter(email = data['email'], role = type, deleted = False))
+    is_phone_existed = (User.objects.filter(mobile = data['mobile'], role = type, deleted = False))
+    is_username_existed = (User.objects.filter(username = data['username'], role = type, deleted = False))
+
+    if data['id'] is not None:
+        is_email_existed = is_email_existed.exclude(pk = data['id'])
+        is_phone_existed = is_phone_existed.exclude(pk = data['id'])
+        is_username_existed = is_username_existed.exclude(pk = data['id'])
 
     error = {}
     if is_username_existed:
