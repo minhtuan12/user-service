@@ -30,7 +30,7 @@ def response_success(message = '', data = None, status_code = 200):
         'status_code': status_code,
         'message': message,
         'data': data
-    }), content_type = 'application/json')
+    }), content_type = 'application/json', status = status_code)
 
 
 def response_error(message = '', status_code = 400, error = None):
@@ -42,7 +42,7 @@ def response_error(message = '', status_code = 400, error = None):
         'status_code': status_code,
         'message': message,
         'error': error
-    }), content_type = 'application/json')
+    }), content_type = 'application/json', status = status_code)
 
 
 def is_valid_phone(number):

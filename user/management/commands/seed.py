@@ -9,6 +9,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         User.objects.all().delete()
         User.objects.create(first_name = 'Super', last_name = 'Admin', username = 'super-admin',
+                            email = 'super-admin@gmail.com',
                             role = USER_ROLE['SUPER_ADMIN'], password = hash_password('Superadmin@123'))
 
         self.stdout.write(self.style.SUCCESS('Successfully seeded super admin'))

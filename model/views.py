@@ -161,7 +161,14 @@ def get_admins(request):
 
     admins = admins[queries['from_page']:queries['to_page']]
 
-    return response_success('Success', UserSerializer(admins, many = True).data)
+    response_data = {
+        'page': queries['page'],
+        'per_page': PER_PAGE,
+        'total': len(admins),
+        'admins': UserSerializer(admins, many = True).data
+    }
+
+    return response_success('Success', response_data)
 
 
 @api_view(['POST'])
