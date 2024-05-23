@@ -6,7 +6,7 @@ import jwt
 import datetime
 from django.conf import settings
 
-from model.models import User, USER_ROLE
+from user_model.models import User, USER_ROLE
 
 
 def hash_password(password):

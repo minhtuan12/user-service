@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from model.models import User, USER_ROLE
+from user_model.models import User, USER_ROLE
 from helpers import hash_password
 
 

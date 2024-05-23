@@ -4,7 +4,7 @@ from django.db.models import Q
 from rest_framework import status
 from django.conf import settings
 from helpers import response_error
-from model.models import USER_ROLE, User
+from user_model.models import USER_ROLE, User
 
 
 def verify_token(f):
@@ -40,7 +40,7 @@ def check_permission(f):
             return f(request, *args, **kwargs)
         except User.DoesNotExist:
             return response_error('Account does not exists!', status.HTTP_404_NOT_FOUND)
-        # except:
-        #     return response_error('Unauthorized', status.HTTP_401_UNAUTHORIZED)
+        except:
+            return response_error('Unauthorized', status.HTTP_401_UNAUTHORIZED)
 
     return decorated

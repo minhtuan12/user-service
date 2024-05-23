@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path, include
 
 urlpatterns = [
-    path('api/admin/auth/', include('model.urls.admin.auth')),
-    path('api/auth/', include('model.urls.user')),
-    path('api/admins/', include('model.urls.admin.management')),
+    path('api/admin/auth/', include('user_model.urls.admin.auth')),
+    path('api/auth/', include('user_model.urls.user')),
+    path('api/admins/', include('user_model.urls.admin.management')),
 ]

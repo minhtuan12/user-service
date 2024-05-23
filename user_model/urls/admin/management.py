@@ -1,6 +1,6 @@
 from django.urls import path
 
-from model import views
+from user_model import views
 
 urlpatterns = [
     path('', view = views.get_admins, name = 'get-admins'),
